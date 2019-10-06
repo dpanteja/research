@@ -1,0 +1,9 @@
+server:
+  port: ${appPort:8880}
+  additionalPorts: 8882,8883
+
+# Spring MVC actuator endpoints available via /admin/info, /admin/health, ...
+server.servlet-path: /
+management:
+  context-path: /admin
+  port: 8881
