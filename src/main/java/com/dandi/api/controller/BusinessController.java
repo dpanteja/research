@@ -10,4 +10,9 @@ public class BusinessController {
 	public String message() {
 		return "Hello";
 	}
+	
+	@GetMapping(value="/message2")
+	public String message2() {
+		return "Hello from Message 2";
+	}
 }
