@@ -1,11 +1,14 @@
 version: 0.2
 
+env:
+  parameter-store:
+    LOGIN_PASSWORD: /dockerLoginPassword
 phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
       - aws --version
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin 160773237740.dkr.ecr.us-east-1.amazonaws.com
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username DandiTeja --password $LOGIN_PASSWORD 160773237740.dkr.ecr.us-east-1.amazonaws.com
       - REPOSITORY_URI=160773237740.dkr.ecr.us-east-1.amazonaws.com/dandirepo
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMIT_HASH:=latest}
